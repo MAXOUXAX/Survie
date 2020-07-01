@@ -1,0 +1,20 @@
+name: Survie
+author: Maxouxax
+description: Plugin ajoutant quelques fonctionnalités pour améliorer la survie
+main: com.lyorine.survie.Main
+version: ${project.version}
+api-version: 1.16
+website: https://lyorine.com
+commands:
+  survie:
+  access:
+  menu:
+  home:
+  map:
+  firework:
+  dragon:
+  raid:
+  vanish:
+    aliases:
+      - v
+  oparmor:

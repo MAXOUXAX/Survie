@@ -1,0 +1,5 @@
+private: true
+worldName: world
+disabledAt: 0
+percentToSleep: 33
+stableAfterSeconds: 30
