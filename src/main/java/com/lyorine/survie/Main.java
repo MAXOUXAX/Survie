@@ -246,6 +246,7 @@ public class Main extends JavaPlugin {
         pluginManager.registerEvents(new InteractEvent(), this);
         pluginManager.registerEvents(new BreakEvent(), this);
         pluginManager.registerEvents(new GrapinEvent(), this);
+        pluginManager.registerEvents(new TimberAxeEvent(), this);
         pluginManager.registerEvents(vanishManager, this);
         pluginManager.registerEvents(this.raidManager, this);
     }

@@ -15,7 +15,7 @@ import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.Set;
 
-public class TimberAxe implements Listener {
+public class TimberAxeEvent implements Listener {
 
     private Set<Material> woods = EnumSet.of(Material.ACACIA_LOG,
             Material.BIRCH_LOG,
