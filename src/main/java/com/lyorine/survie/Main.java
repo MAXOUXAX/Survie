@@ -7,6 +7,7 @@ import com.lyorine.survie.schedulers.*;
 import com.lyorine.survie.utils.*;
 import com.lyorine.survie.utils.core.DataLoader;
 import com.lyorine.survie.utils.core.ImageMapManager;
+import com.lyorine.survie.utils.core.helpers.ImageHelper;
 import com.lyorine.survie.utils.core.helpers.RenderHelper;
 import com.lyorine.survie.utils.raids.RaidManager;
 import net.minecraft.server.v1_16_R1.PacketPlayOutMapChunk;
@@ -21,7 +22,6 @@ import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import com.lyorine.survie.utils.core.helpers.ImageHelper;
 
 import java.io.File;
 import java.io.IOException;
@@ -148,6 +148,19 @@ public class Main extends JavaPlugin {
         craftExpBottle();
         craftGrapin();
         craftPickaxes();
+        craftTimberAxe();
+    }
+
+    private void craftTimberAxe() {
+        ItemStack timberAxe = new ItemBuilder(Material.NETHERITE_AXE).setName(Reference.TIMBERAXE_NAME.getName()).setLore(" ", Reference.TIMBERAXE_LORE.getName()).toItemStack();
+        NamespacedKey timberAxeKey = new NamespacedKey(this, "timberaxe");
+        ShapedRecipe timberAxeRecipe = new ShapedRecipe(timberAxeKey, timberAxe);
+        timberAxeRecipe.shape(" A ", "BDB", " A ");
+        timberAxeRecipe.setIngredient('A', Material.NETHERITE_INGOT);
+        timberAxeRecipe.setIngredient('D', Material.NETHERITE_AXE);
+        timberAxeRecipe.setIngredient('B', Material.ENDER_EYE);
+
+        Bukkit.addRecipe(timberAxeRecipe);
     }
 
     private void craftPickaxes() {
@@ -233,6 +246,7 @@ public class Main extends JavaPlugin {
         pluginManager.registerEvents(new InteractEvent(), this);
         pluginManager.registerEvents(new BreakEvent(), this);
         pluginManager.registerEvents(new GrapinEvent(), this);
+        pluginManager.registerEvents(new TimberAxeEvent(), this);
         pluginManager.registerEvents(vanishManager, this);
         pluginManager.registerEvents(this.raidManager, this);
     }

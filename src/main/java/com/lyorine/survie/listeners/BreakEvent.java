@@ -1,9 +1,10 @@
 package com.lyorine.survie.listeners;
 
-import org.bukkit.*;
+import com.lyorine.survie.utils.BlockUtils;
+import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
-import org.bukkit.entity.*;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -11,7 +12,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
 
 public class BreakEvent implements Listener {
 
@@ -29,7 +32,7 @@ public class BreakEvent implements Listener {
                 if (b.getType() == Material.COAL_ORE) {
                     e.setDropItems(false);
                     setDurability(item, getDurability(item)+1);
-                    breakBlocks(item, Collections.singletonList(Material.COAL_ORE), b, new HashSet<>());
+                    BlockUtils.breakBlocks(item, Collections.singletonList(Material.COAL_ORE), b, new HashSet<>(), true);
                     p.playSound(p.getLocation(), Sound.BLOCK_ANVIL_BREAK, 20, 1);
                 } else {
                     e.setCancelled(true);
@@ -40,8 +43,8 @@ public class BreakEvent implements Listener {
                         || b.getType() == Material.LAPIS_ORE) {
                     e.setDropItems(false);
                     setDurability(item, getDurability(item)+1);
-                    breakBlocks(item, Arrays.asList(Material.IRON_ORE,
-                            Material.LAPIS_ORE), b, new HashSet<>());
+                    BlockUtils.breakBlocks(item, Arrays.asList(Material.IRON_ORE,
+                            Material.LAPIS_ORE), b, new HashSet<>(), true);
                     p.playSound(p.getLocation(), Sound.BLOCK_ANVIL_BREAK, 20, 1);
                 } else {
                     e.setCancelled(true);
@@ -58,14 +61,14 @@ public class BreakEvent implements Listener {
                         || b.getType() == Material.NETHER_QUARTZ_ORE) {
                     e.setDropItems(false);
                     setDurability(item, getDurability(item)+1);
-                    breakBlocks(item, Arrays.asList(Material.DIAMOND_ORE,
+                    BlockUtils.breakBlocks(item, Arrays.asList(Material.DIAMOND_ORE,
                             Material.EMERALD_ORE,
                             Material.IRON_ORE,
                             Material.LAPIS_ORE,
                             Material.COAL_ORE,
                             Material.GOLD_ORE,
                             Material.REDSTONE_ORE,
-                            Material.NETHER_QUARTZ_ORE), b, new HashSet<>());
+                            Material.NETHER_QUARTZ_ORE), b, new HashSet<>(), true);
                     p.playSound(p.getLocation(), Sound.BLOCK_ANVIL_BREAK, 20, 1);
                 } else {
                     e.setCancelled(true);
@@ -73,24 +76,6 @@ public class BreakEvent implements Listener {
                 }
             }
         }
-    }
-
-    public void breakBlocks(ItemStack itemStackOfPlayer, List<Material> materials, Block anchor, HashSet<Block> collected){
-        if(!materials.contains(anchor.getType())) return;
-        if(collected.contains(anchor)) return;
-        if(anchor.getDrops(itemStackOfPlayer).stream().noneMatch(itemStack -> itemStack.getType() == anchor.getType())){
-            ExperienceOrb orb = (ExperienceOrb) anchor.getWorld().spawnEntity(anchor.getLocation(), EntityType.EXPERIENCE_ORB);
-            orb.setExperience(collected.size()*5);
-        }
-        collected.add(anchor);
-        anchor.breakNaturally(itemStackOfPlayer);
-        anchor.getWorld().spawnParticle(Particle.CLOUD, anchor.getLocation(), 15, 0, 0, 0, 0.05);
-        breakBlocks(itemStackOfPlayer, materials, anchor.getRelative(BlockFace.NORTH), collected);
-        breakBlocks(itemStackOfPlayer, materials, anchor.getRelative(BlockFace.DOWN), collected);
-        breakBlocks(itemStackOfPlayer, materials, anchor.getRelative(BlockFace.EAST), collected);
-        breakBlocks(itemStackOfPlayer, materials, anchor.getRelative(BlockFace.WEST), collected);
-        breakBlocks(itemStackOfPlayer, materials, anchor.getRelative(BlockFace.UP), collected);
-        breakBlocks(itemStackOfPlayer, materials, anchor.getRelative(BlockFace.SOUTH), collected);
     }
 
     public ItemStack setDurability(ItemStack item, int durability){
