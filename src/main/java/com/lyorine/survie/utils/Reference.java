@@ -1,7 +1,5 @@
 package com.lyorine.survie.utils;
 
-import java.util.ArrayList;
-
 public enum Reference {
 
     INVSURVIE("§7» §a§lSurvie"),
@@ -85,6 +83,9 @@ public enum Reference {
     INVRAID_VAGUECOUNTLORE("§7Permet de régler le nombre de vague"),
     INVRAID_START("§a§lDémarrer"),
     INVRAID_STARTLORE("§7Permet de démarrer le RAID !"),
+
+    TIMBERAXE_NAME("§8Timber Axe"),
+    TIMBERAXE_LORE("§7Cette hache détruit tout l'arbre d'un coup, c'est du maraboutage !"),
     ;
 
 
