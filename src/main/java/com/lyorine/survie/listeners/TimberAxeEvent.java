@@ -28,7 +28,7 @@ public class TimberAxeEvent implements Listener {
             );//ui mais apres c pas grave tant que ca casse les tronc comme les gros arbre
 
     @EventHandler
-    public void onAxeTimberUsed(BlockBreakEvent e) {
+    public void onTimberAxeUse(BlockBreakEvent e) {
         Player p = e.getPlayer();
         if (isTimberAxe(p.getInventory().getItemInMainHand())) {
             ItemStack item = e.getPlayer().getInventory().getItemInMainHand();
