@@ -84,7 +84,7 @@ public enum Reference {
     INVRAID_START("§a§lDémarrer"),
     INVRAID_STARTLORE("§7Permet de démarrer le RAID !"),
 
-    TIMBERAXE_NAME("§8Timber Axe"),
+    TIMBERAXE_NAME("§e§lTimber§6§lAxe"),
     TIMBERAXE_LORE("§7Cette hache détruit tout l'arbre d'un coup, c'est du maraboutage !"),
     ;
 
