@@ -1,6 +1,6 @@
-# Survie
+# ❤ Survie
 
-Survie • Un plugin open-source pour un serveur privé
+Open-source Minecraft plugin for Lyorine's private server
 
 
 # Vous souhaitez rejoindre le serveur ?
